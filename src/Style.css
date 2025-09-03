@@ -1,0 +1,48 @@
+.brandStyle{
+    width: 200px;
+    height: 40px;
+    padding: 0%;
+
+}
+
+.brand-dropdown .dropdown-menu {
+  max-height: 220px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.loginStyle{
+    padding-right: 30px;
+}
+
+.menuStyle{
+    margin-left: 20px;
+}
+
+.cartStyle{
+    display: flex;
+    padding-right: 30px;
+    width: 30px;
+    height: 30px;
+}
+
+.hoverStyle:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+.searchLogo{
+    width: 30px;
+    height: 30px;
+    padding: 0%;
+    display: flex;
+    outline: none;
+    box-shadow: none;
+    background: transparent !important; /* no blue background */
+  border: none !important;            /* no border */
+  outline: none !important;           /* remove focus outline */
+  box-shadow: none !important;        /* remove bootstrap glow */
+  padding: 0;                         /* fit tightly around the icon */
+  cursor: pointer;
+}
