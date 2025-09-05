@@ -6,9 +6,9 @@
 }
 
 .brand-dropdown .dropdown-menu {
-  max-height: 220px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
+    max-height: 220px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 .loginStyle{
@@ -19,13 +19,6 @@
     margin-left: 20px;
 }
 
-.cartStyle{
-    display: flex;
-    padding-right: 30px;
-    width: 30px;
-    height: 30px;
-}
-
 .hoverStyle:hover{
     cursor: pointer;
     transform: scale(1.1);
@@ -33,16 +26,55 @@
 }
 
 .searchLogo{
-    width: 30px;
-    height: 30px;
-    padding: 0%;
+    width: 20px;
+    height: 20px;
     display: flex;
     outline: none;
     box-shadow: none;
-    background: transparent !important; /* no blue background */
-  border: none !important;            /* no border */
-  outline: none !important;           /* remove focus outline */
-  box-shadow: none !important;        /* remove bootstrap glow */
-  padding: 0;                         /* fit tightly around the icon */
-  cursor: pointer;
+    background: transparent !important;
+    border: none !important;        
+    outline: none !important;          
+    box-shadow: none !important;        
+    padding: 0;                         
+    cursor: pointer;
+}
+
+.no-arrow .dropdown-toggle::after {
+    display: none ;
+}
+
+.searchStyle{
+    width: 200px;
+    height: 35px;
+    border-radius: 20px;
+    padding-left: 15px;
+    transition: width 0.9s ease;
+}
+
+.searchStyle:focus {
+  width: 350px;
+  outline: none;
+  box-shadow: none;
+}
+
+.searchBar{
+    display: flex;
+    position: relative;
+    
+}
+
+.searchBar input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+
+.searchBar .searchLogo {
+    position: absolute;
+    transform: translateY(-50%);
+    margin-left: 165px;
+    margin-top: 17px;
+}
+
+.searchStyle:focus ~ .searchLogo {
+  margin-left: 300px; /* or whatever style */
+  transition: width 0.8s ease;
 }

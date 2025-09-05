@@ -1,11 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
-import NavigationBar from './NavigationBar';
+import LoggedOutNavigation from './Components/LoggedOutNavigation';
 
 function App() {
   return (
     <div>
-      <NavigationBar />
+      <LoggedOutNavigation />
     </div>
   );
 }

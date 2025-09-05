@@ -1,12 +1,11 @@
 import React from 'react'
-import motolinelogo from './Images/MotoLineLogo.png'
-import menulogo from './Images/menu.png'
-import cartlogo from './Images/shoppingbasket.png'
-import searchlogo from './Images/searchicon.png'
-import './Style.css'
+import motolinelogo from '../Images/MotoLineLogo.png'
+import menulogo from '../Images/menu.png'
+import searchlogo from '../Images/searchicon.png'
+import '../Style.css'
 import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button } from 'react-bootstrap'
 
-const NavigationBar = () => {
+const LoggedOutNavigation = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -32,16 +31,14 @@ const NavigationBar = () => {
               <NavDropdown.Item href="#royalenfield">Royal Enfield</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-            <Form className="d-flex me-3">
-            <FormControl type="search" placeholder="Search" className="me-2" aria-label="Search"/>
+            <Form className="d-flex me-3 searchBar">
+            <FormControl type="search" placeholder="Search" className="me-2 searchStyle" aria-label="Search"/>
             <Button className='searchLogo hoverStyle'><img src={searchlogo}></img></Button>
             </Form>
             <Nav.Link href="#home" className='loginStyle hoverStyle'>Log In</Nav.Link>
-            <Nav.Link href="#home" className='cartStyle hoverStyle'><img src={cartlogo}></img></Nav.Link>
-            <NavDropdown title={<img src={menulogo} alt="Menu" style={{width: 30, height: 30}} />} id="basic-nav-dropdown" className='menuStyle hoverStyle' align={'end'}>
+            <NavDropdown title={<img src={menulogo} alt="Menu" style={{width: 30, height: 30}} />} id="basic-nav-dropdown" className='menuStyle hoverStyle no-arrow' align={'end'}>
             <NavDropdown.Item href="#aboutus">About Us</NavDropdown.Item>
             <NavDropdown.Item href="#contactus">Contact Us</NavDropdown.Item>
-
             </NavDropdown>
         </Navbar.Collapse>
       </Container>
@@ -49,4 +46,4 @@ const NavigationBar = () => {
   )
 }
 
-export default NavigationBar
+export default LoggedOutNavigation
