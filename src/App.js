@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import LoggedOutNavigation from './Components/LoggedOutNavigation';
+import LoggedOutNavigation from './Components/NavigationBar/LoggedOutNavigation';
 
 function App() {
   return (

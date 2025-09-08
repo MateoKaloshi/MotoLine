@@ -1,8 +1,8 @@
 import React from 'react'
-import motolinelogo from '../Images/MotoLineLogo.png'
-import menulogo from '../Images/menu.png'
-import searchlogo from '../Images/searchicon.png'
-import '../Style.css'
+import motolinelogo from '../../Images/NavigationIcons/MotoLineLogo.png'
+import menulogo from '../../Images/NavigationIcons/menu.png'
+import searchlogo from '../../Images/NavigationIcons/searchicon.png'
+import '../../Style.css'
 import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button } from 'react-bootstrap'
 
 const LoggedOutNavigation = () => {
