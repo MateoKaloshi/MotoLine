@@ -1,0 +1,202 @@
+.brandStyle{
+    width: 200px;
+    height: 40px;
+    padding: 0%;
+
+}
+
+.brand-dropdown .dropdown-menu {
+    max-height: 220px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.loginStyle{
+    padding-right: 20px;
+}
+
+.menuStyle{
+    margin-left: 20px;
+}
+
+.hoverStyle:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.2s;
+}
+
+.searchStyle:focus ~ .searchLogo {
+  margin-left: 300px;
+  transition: width 0.8s ease;
+}
+
+.searchWidth{
+  padding-right: 30px;
+}
+
+.custom-search .form-control {
+  border-radius: 20px 0 0 20px;
+  border: none;
+  box-shadow: none;
+}
+.custom-search .input-group-text {
+  border-radius: 0 20px 20px 0;
+  border: none;
+  background: white;
+  cursor: pointer;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .brandStyle {
+    width: 150px;
+    height: 30px;
+  }
+
+  .searchWidth {
+    padding-right: 0;
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .custom-search {
+    max-width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .loginStyle {
+    padding-right: 0;
+    margin: 5px 0;
+  }
+
+  .menuStyle {
+    margin-left: 0;
+    margin-top: 5px;
+  }
+
+  .navbar-collapse {
+    padding: 10px 0;
+  }
+
+  .brand-dropdown .dropdown-menu {
+    max-height: 180px;
+  }
+}
+
+@media (max-width: 576px) {
+  .brandStyle {
+    width: 120px;
+    height: 25px;
+  }
+
+  .navbar-toggler {
+    padding: 4px 8px;
+  }
+}
+
+/* Additional responsive helpers */
+.brandImg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.searchInput {
+  width: 100%;
+}
+
+.custom-search .form-control {
+  min-width: 0; /* allow shrinking inside flex containers */
+}
+
+/* When navbar is collapsed, stack items and make links full width for easier tapping */
+@media (max-width: 991px) {
+  .navbar-collapse .nav {
+    width: 100%;
+  }
+
+  .navbar-collapse .nav > .nav-link,
+  .navbar-collapse .nav .dropdown-toggle,
+  .navbar-collapse .menuStyle,
+  .navbar-collapse .loginStyle {
+    width: 100%;
+    text-align: left;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .navbar-collapse .d-flex.align-items-center {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menuStyle {
+    margin: 0.25rem 0;
+  }
+
+  .searchWidth {
+    padding: 0.25rem 0;
+  }
+}
+
+/* Tweak dropdown menu on small screens so it doesn't overflow */
+@media (max-width: 480px) {
+  .brand-dropdown .dropdown-menu {
+    left: 0 !important;
+    right: 0 !important;
+    width: auto;
+  }
+}
+
+/* Make collapse area stack vertically and allow full-width controls */
+@media (max-width: 991px) {
+  .navbar-collapse {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  /* Ensure nav (links) occupy full width and appear first */
+  .navbar-collapse .me-auto {
+    order: 1;
+    width: 100%;
+    display: block;
+    padding: 0.25rem 0;
+  }
+
+  /* Search goes below nav */
+  .searchWidth {
+    order: 2;
+    width: 100%;
+    padding: 0.25rem 0;
+  }
+
+  .custom-search {
+    width: 100% !important;
+    max-width: none !important;
+  }
+
+  /* Actions (login + menu) stack below search */
+  .navbar-collapse .d-flex.align-items-center {
+    order: 3;
+    width: 100%;
+    padding: 0.25rem 0;
+    justify-content: flex-start;
+  }
+
+  .navbar-collapse .nav-link,
+  .navbar-collapse .menuStyle,
+  .navbar-collapse .loginStyle {
+    width: 100%;
+    display: block;
+    padding: 0.5rem 0.75rem;
+  }
+
+  /* Make dropdown menus full-width inside collapse for easier tapping */
+  .navbar-collapse .dropdown-menu {
+    position: static;
+    float: none;
+    width: 100%;
+    box-shadow: none;
+  }
+}
