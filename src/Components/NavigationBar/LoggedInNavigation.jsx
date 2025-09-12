@@ -1,11 +1,11 @@
 import React from 'react'
-import motolinelogo from '../Images/MotoLineLogo.png'
-import menulogo from '../Images/menu.png'
-import searchlogo from '../Images/searchicon.png'
-import '../Style.css'
-import { Navbar, Nav, NavDropdown, Container, Form, FormControl, Button } from 'react-bootstrap'
+import motolinelogo from '../../Images/NavigationIcons/MotoLineLogo.png'
+import menulogo from '../../Images/NavigationIcons/menu.png'
+import searchIcon from '../../Images/NavigationIcons/searchicon.png'
+import '../../CSS/NavigationStyle.css'
+import { Navbar, Nav, NavDropdown, Container, Form, FormControl, InputGroup, Button } from 'react-bootstrap'
 
-const LoggedOutNavigation = () => {
+const LoggedInNavigation = () => {
   return (
     <Navbar expand="lg" className="bg-body-tertiary">
       <Container fluid>
@@ -13,7 +13,13 @@ const LoggedOutNavigation = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
+
+            {/* Home Link */}
+
             <Nav.Link href="#home" className='hoverStyle'>Home</Nav.Link>
+            
+            {/* Brand Dropdown */}
+            
             <NavDropdown title="Select Brand" id="basic-nav-dropdown" className="brand-dropdown hoverStyle">
               <NavDropdown.Item href="#topbrands">Top Brands</NavDropdown.Item>
               <NavDropdown.Divider />
@@ -31,12 +37,22 @@ const LoggedOutNavigation = () => {
               <NavDropdown.Item href="#royalenfield">Royal Enfield</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-            <Form className="d-flex me-3 searchBar">
-            <FormControl type="search" placeholder="Search" className="me-2 searchStyle" aria-label="Search"/>
-            <Button className='searchLogo hoverStyle'><img src={searchlogo}></img></Button>
+
+            {/* Search Bar */}
+
+            <Form className='searchWidth'>
+            <InputGroup className="me-3 custom-search" style={{ maxWidth: "300px" }}>
+              <FormControl placeholder="Search" aria-label="Search" />
+              <InputGroup.Text>
+                <img src={searchIcon} alt="search" style={{ width: "16px", height: "16px" }} />
+              </InputGroup.Text>
+            </InputGroup>
             </Form>
-            <Nav.Link href="#home" className='loginStyle hoverStyle'>Log In</Nav.Link>
+
+            {/* Menu */}
+
             <NavDropdown title={<img src={menulogo} alt="Menu" style={{width: 30, height: 30}} />} id="basic-nav-dropdown" className='menuStyle hoverStyle no-arrow' align={'end'}>
+            <NavDropdown.Item href="#logout">Log Out</NavDropdown.Item>
             <NavDropdown.Item href="#aboutus">About Us</NavDropdown.Item>
             <NavDropdown.Item href="#contactus">Contact Us</NavDropdown.Item>
             </NavDropdown>
@@ -46,4 +62,4 @@ const LoggedOutNavigation = () => {
   )
 }
 
-export default LoggedOutNavigation
+export default LoggedInNavigation
