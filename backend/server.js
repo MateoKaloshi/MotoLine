@@ -3,7 +3,10 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
 const app = express();
-
+const userModel = require("./Models/UserModel");
+const bikeModel = require("./Models/BikesModel");
+const soldModel = require("./Models/SoldModel");
+const imageModel = require("./Models/ImagesModel");
 
 app.use(
   cors({
@@ -24,12 +27,19 @@ app.use(express.json({ limit: "1000mb", extended: true }));
 
 mongoose
   .connect(
-    "mongodb+srv://test:test@cluster0.f1fjugu.mongodb.net/mernproject?retryWrites=true&w=majority&appName=Cluster0"
+    "mongodb+srv://Teo:mateo@motolinedb.yqk6rjx.mongodb.net/?retryWrites=true&w=majority&appName=MotoLineDB"
   )
   .then(() => console.log("DB connected"))
   .catch((err) => console.log("DB not connected " + err));
 
-app.use(contactRoute);
+const user = userModel.create({
+  first_name: "Mateo",
+  last_name: "Kaloshi",
+  phone_number: "12345678",
+  adress: "Testvej 1",
+  email: 'mateo@gmail.com',
+  password: "12345678",
+});
 
 app.use("/", (req, res) => {
   res.send("Hello World");
