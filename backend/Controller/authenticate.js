@@ -9,34 +9,51 @@ const tokenBlacklist = [];
 // LOGIN
 exports.login = async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { email, password } = req.body || {};
+
     if (!email || !password) {
-      return res.status(400).json({ message: "Email and password are required" });
+      return res.status(400).json({ message: 'Email and password are required' });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).exec();
     if (!user) {
-      return res.status(401).json({ message: "Invalid email!" });
+      return res.status(401).json({ message: 'Invalid email!' });
     }
 
-       if (user.password !== password) {
-      return res.status(401).json({ message: "Invalid password!" });
+    if (!user.password) {
+      console.warn(`User ${user._id} has no password stored.`);
+      return res.status(500).json({ message: 'User password not set. Contact support.' });
     }
 
-    const token = jwt.sign(
-      { id: user._id, email: user.email },
-      JWT_SECRET,
-      { expiresIn: "1h" }
-    );
+    let isMatch;
+    try {
+      isMatch = await bcrypt.compare(password, user.password);
+    } catch (bcryptErr) {
+      console.error('bcrypt.compare error:', bcryptErr && bcryptErr.stack ? bcryptErr.stack : bcryptErr);
+      return res.status(500).json({ message: 'Error comparing passwords' });
+    }
 
-    // you may want to remove password field from user before sending:
-    const userSafe = user.toObject ? user.toObject() : user;
+    if (!isMatch) {
+      return res.status(401).json({ message: 'Invalid password!' });
+    }
+
+    // SIGN TOKEN
+    let token;
+    try {
+      if (!JWT_SECRET) {
+        console.warn('JWT_SECRET is not set; using fallback (development).');
+      }
+      token = jwt.sign({ id: user._id, email: user.email }, JWT_SECRET, { expiresIn: '1h' });
+    } catch (jwtErr) {
+      console.error('jwt.sign error:', jwtErr && jwtErr.stack ? jwtErr.stack : jwtErr);
+      return res.status(500).json({ message: 'Error generating token' });
+    }
+
+    const userSafe = typeof user.toObject === 'function' ? user.toObject() : { ...user };
     delete userSafe.password;
 
-    res.json({ user: userSafe, token });
+    return res.json({ user: userSafe, token });
   } catch (err) {
-    console.error("Login error:", err);
-    res.status(500).json({ message: err.message });
   }
 };
 
@@ -59,7 +76,6 @@ exports.register = async (req, res) => {
       return res.status(400).json({ message: "Email and password are required" });
     }
 
-    // Check duplicate
     const existing = await User.findOne({ email });
     if (existing) {
       return res.status(400).json({ message: "Email already registered" });
