@@ -26,6 +26,7 @@ const SignUpComp = () => {
       console.log("Registration successful:", response.data);
     } catch (error) {
       console.error("Registration error:", error);
+
     }
   };
 

@@ -1,36 +1,165 @@
-.form-page-main { 
-    padding: 24px; 
+.login-form-page {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
 }
 
-.login-section { 
-    display: flex; 
-    justify-content: center; 
+.login-form-card {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  
 }
-.container-small { 
-    max-width: 720px; 
-    width: 100%; 
+
+.login-form-card .card-body {
+  padding: 2rem;
 }
-.form-wrapper { 
-    background: #fff; 
-    padding: 24px; 
-    border-radius: 6px; 
-    box-shadow: 0 6px 18px rgba(0,0,0,0.06); 
+
+.input-group-text {
+  background: #fff;
+  border-right: 0;
 }
-.main-login-heading { 
-    font-size: 20px; 
-    margin: 0 0 12px 0; 
+
+.input-group .form-control {
+  border-left: 0;
 }
-.form-btn.width-full { 
-    width: 100%; 
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
 }
-.error-box { 
-    margin-top: 12px; 
-    background: #fff1f0; 
-    border: 1px solid #ffa39e; 
-    padding: 8px; 
-    border-radius: 4px; 
+
+.bg-login-hero {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url('../Images/Login/loginbackground.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  min-height: 100vh;
 }
-.error-text { 
-    color: #cf1322; 
-    margin: 0; 
+
+.login-form-page { 
+    background: transparent; 
+}
+
+.login-form-card { 
+    background: rgba(255,255,255,0.96); 
+}
+
+.login-buttonStyle {
+    background-color: #b83f20;
+    border-color: #b83f20;
+}
+
+.login-buttonStyle:hover {
+    background-color: #f15252;
+    border-color: #f15252;
+}
+
+.login-buttonStyle:focus:active{
+    background-color: #f15252;
+    border-color: #f15252;
+}
+
+.login-createStyle {
+    color: #b83f20;
+    font-weight: 500;
+    text-underline-offset: 3px;
+    text-decoration: none
+}
+
+.login-createStyle:hover {
+    color: #f15252;
+    text-decoration: underline;
+}
+
+.login-rememberStyle:focus {
+  box-shadow: 0 0 0 0.25rem rgba(231, 70, 70, 0.349);
+  border-color: #f15252;
+}
+
+.login-rememberStyle:checked {
+    background-color: #f15252;
+    border-color:  #f15252;
+    box-shadow: none;
+}
+
+.login-input-group .form-control:focus,
+.login-input-group .form-control:focus-visible {
+  outline: none;
+  box-shadow: none !important;
+  border-color: transparent;
+}
+
+.login-input-group .input-group-text:focus,
+.login-input-group .input-group-text:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.login-input-group {
+  border: 1px solid #ced4da;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+.login-input-group:focus-within {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 .15rem rgba(220,53,69,.18);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+input:-webkit-autofill::first-line {
+  -webkit-text-fill-color: inherit !important;
+  color: inherit !important;
+}
+
+input:-internal-autofill-selected {
+  background-color: transparent !important;
+  color: inherit !important;
+}
+
+input:-moz-autofill,
+textarea:-moz-autofill,
+select:-moz-autofill {
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -moz-text-fill-color: inherit !important;
+}
+
+input:-webkit-autofill:focus {
+  border-color: inherit !important;
+  box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.05) !important;
+}
+
+:root { --theme-red: #B33020; }
+
+.btn:disabled,
+.btn.disabled,
+.btn[disabled] {
+  background-color: var(--theme-red) !important;
+  border-color: var(--theme-red) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+@media (max-width: 576px) {
+  .login-form-card {
+    margin: 0 0.5rem;
+  }
+
+  .login-form-card .card-body {
+    padding: 1.25rem;
+  }
 }
