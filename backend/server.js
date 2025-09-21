@@ -6,6 +6,8 @@ const session = require("express-session");
 require("dotenv").config();
 
 const loginRoute = require("./routes/loginRoute");
+const bikeRoute = require("./routes/bikesRoute");
+
 
 app.use(
   cors({
@@ -32,6 +34,9 @@ mongoose
   .catch((err) => console.log("DB not connected " + err));
 
 app.use("/api", loginRoute);
+
+app.use("/api", bikeRoute);
+
 
 app.use("/", (req, res) => {
   res.send("Hello World");

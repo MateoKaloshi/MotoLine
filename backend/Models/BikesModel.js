@@ -26,11 +26,12 @@ const bikesSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    image_id: {
+   images: [
+    {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Image",
-        required: true
-    },
+        ref: "Image"
+    }
+    ],
     description: {
         type: String,
     },
