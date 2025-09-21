@@ -1,7 +1,6 @@
 const Bike = require("../models/Bike");
 const Image = require("../models/Image");
 
-// ================== UPLOAD MULTIPLE IMAGES ==================
 const uploadImages = async (req, res) => {
   try {
     if (!req.files || req.files.length === 0) {
@@ -26,7 +25,6 @@ const uploadImages = async (req, res) => {
       const savedImage = await newImage.save();
       imageDocs.push(savedImage);
 
-      // add image reference to bike
       await Bike.findByIdAndUpdate(bike_id, {
         $push: { images: savedImage._id },
       });

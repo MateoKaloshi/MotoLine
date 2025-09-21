@@ -31,9 +31,8 @@ exports.createBike = async (req, res) => {
 // GET ALL BIKES
 const getAllBikes = async (req, res) => {
   try {
-    const bikes = await Bike.find().populate("images"); // or .populate("image_id") if single
+    const bikes = await Bike.find().populate("images");
 
-    // transform image paths into URLs
     const bikesWithImages = bikes.map(bike => ({
       ...bike.toObject(),
       images: bike.images?.map(img => ({
@@ -74,14 +73,13 @@ const updateBike = async (req, res) => {
     const bike = await Bike.findByIdAndUpdate(
       req.params.id,
       req.body,
-      { new: true } // return updated document
+      { new: true }
     ).populate("images");
 
     if (!bike) {
       return res.status(404).json({ message: "Bike not found" });
     }
 
-    // build response with map
     const bikeWithImages = {
       ...bike.toObject(),
       images: bike.images?.map(img => ({

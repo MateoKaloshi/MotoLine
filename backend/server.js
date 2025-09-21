@@ -34,7 +34,6 @@ mongoose
   .catch((err) => console.log("DB not connected " + err));
 
 app.use("/api", loginRoute);
-
 app.use("/api", bikeRoute);
 
 
