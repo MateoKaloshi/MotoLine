@@ -155,7 +155,9 @@ export default function LoginComponent() {
                     </div>
 
                     <div className="text-end mb-0">
-                      <Link to="/">Forgot Password?</Link>
+                      <p>Don't have an account?
+                      <Link to="/signup"> Sign up</Link>
+                      </p>
                     </div>
                   </form>
                 </div>
