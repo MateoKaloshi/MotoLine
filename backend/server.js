@@ -1,12 +1,11 @@
 const express = require("express");
+const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
-const app = express();
-const userModel = require("./Models/UserModel");
-const bikeModel = require("./Models/BikesModel");
-const soldModel = require("./Models/SoldModel");
-const imageModel = require("./Models/ImagesModel");
+require("dotenv").config();
+
+const loginRoute = require("./routes/loginRoute");
 
 app.use(
   cors({
@@ -32,14 +31,7 @@ mongoose
   .then(() => console.log("DB connected"))
   .catch((err) => console.log("DB not connected " + err));
 
-const user = userModel.create({
-  first_name: "Mateo",
-  last_name: "Kaloshi",
-  phone_number: "12345678",
-  adress: "Testvej 1",
-  email: 'mateo@gmail.com',
-  password: "12345678",
-});
+app.use("/api", loginRoute);
 
 app.use("/", (req, res) => {
   res.send("Hello World");

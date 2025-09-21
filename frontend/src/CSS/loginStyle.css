@@ -1,0 +1,36 @@
+.form-page-main { 
+    padding: 24px; 
+}
+
+.login-section { 
+    display: flex; 
+    justify-content: center; 
+}
+.container-small { 
+    max-width: 720px; 
+    width: 100%; 
+}
+.form-wrapper { 
+    background: #fff; 
+    padding: 24px; 
+    border-radius: 6px; 
+    box-shadow: 0 6px 18px rgba(0,0,0,0.06); 
+}
+.main-login-heading { 
+    font-size: 20px; 
+    margin: 0 0 12px 0; 
+}
+.form-btn.width-full { 
+    width: 100%; 
+}
+.error-box { 
+    margin-top: 12px; 
+    background: #fff1f0; 
+    border: 1px solid #ffa39e; 
+    padding: 8px; 
+    border-radius: 4px; 
+}
+.error-text { 
+    color: #cf1322; 
+    margin: 0; 
+}

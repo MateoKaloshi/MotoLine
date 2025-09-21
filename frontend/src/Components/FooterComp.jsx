@@ -1,13 +1,13 @@
 import React from 'react'
-import '../../CSS/FooterStyle.css'
-import logo from '../../Images/Footer/footerlogo.png'
-import fb from '../../Images/Footer/facebook.png'
-import ig from '../../Images/Footer/instagram.png'
-import wp from '../../Images/Footer/whatsapp.png'
+import '../CSS/footerStyle.css'
+import logo from '../Images/Footer/footerlogo.png'
+import fb from '../Images/Footer/facebook.png'
+import ig from '../Images/Footer/instagram.png'
+import wp from '../Images/Footer/whatsapp.png'
 
 const FooterComp = () => {
   return (
-    <footer className="bg-dark text-light pt-5 pb-3" style={{ position: 'fixed', bottom: '0', width: '100%',}}>
+    <footer className="bg-dark text-light pt-5 pb-3">
         <div className="container">
           <div className="row gy-4">
             

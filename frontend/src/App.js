@@ -1,12 +1,16 @@
-import logo from './logo.svg';
 import './App.css';
-import LoggedOutNavigation from './Components/NavigationBar/LoggedOutNavigation';
-import FooterComp from './Components/Footer/FooterComp';
+import FooterComp from './Components/FooterComp';
+import { Routes, Route } from 'react-router-dom';
+import LoginComp from './Components/LoginComp';
+import Navigation from './Components/Navigation';
 
 function App() {
   return (
     <div>
-      <LoggedOutNavigation />
+      <Navigation />
+     <Routes>
+      <Route path="/login" element={<LoginComp />} />
+     </Routes>
       <FooterComp />
     </div>
   );
