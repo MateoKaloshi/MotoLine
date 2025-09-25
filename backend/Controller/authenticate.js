@@ -101,3 +101,37 @@ exports.register = async (req, res) => {
 };
 
 exports.tokenBlacklist = tokenBlacklist;
+
+exports.authenticateToken = async (req, res, next) => {
+  try {
+    const authHeader = req.headers["authorization"] || req.headers["Authorization"];
+    if (!authHeader) return res.status(401).json({ message: "No token provided" });
+
+    const token = authHeader.startsWith("Bearer ") ? authHeader.split(" ")[1] : authHeader;
+    if (!token) return res.status(401).json({ message: "No token provided" });
+
+    if (tokenBlacklist.includes(token)) return res.status(401).json({ message: "Token is revoked" });
+
+    let payload;
+    try {
+      payload = jwt.verify(token, JWT_SECRET);
+    } catch (err) {
+      return res.status(401).json({ message: "Invalid or expired token" });
+    }
+
+    try {
+      const user = await User.findById(payload.id).exec();
+      if (!user) return res.status(401).json({ message: "User not found" });
+      const safeUser = typeof user.toObject === 'function' ? user.toObject() : user;
+      delete safeUser.password;
+      req.user = safeUser;
+      next();
+    } catch (err) {
+      console.error('authenticateToken user fetch error', err);
+      return res.status(500).json({ message: 'Server error' });
+    }
+  } catch (err) {
+    console.error('authenticateToken error', err);
+    return res.status(500).json({ message: 'Server error' });
+  }
+};

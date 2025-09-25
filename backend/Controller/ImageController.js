@@ -1,5 +1,5 @@
-const Bike = require("../models/Bike");
-const Image = require("../models/Image");
+const Bike = require("../Models/BikesModel");
+const Image = require("../Models/ImagesModel");
 
 const uploadImages = async (req, res) => {
   try {
@@ -24,14 +24,22 @@ const uploadImages = async (req, res) => {
 
       const savedImage = await newImage.save();
       imageDocs.push(savedImage);
-
-      await Bike.findByIdAndUpdate(bike_id, {
-        $push: { images: savedImage._id },
-      });
     }
 
-    res.status(201).json(imageDocs);
+    res.status(201).json({
+      message: "Images uploaded successfully",
+      images: imageDocs.map((img) => ({
+        id: img._id,
+        url: img.url,
+        mimeType: img.mimeType,
+        bike_id: img.bike_id,
+      })),
+    });
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
+};
+
+module.exports = {
+  uploadImages,
 };

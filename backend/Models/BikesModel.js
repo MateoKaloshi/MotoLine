@@ -10,7 +10,7 @@ const bikesSchema = new mongoose.Schema({
         required: true
     },
     production_year: {
-        type: Number,
+        type: Date,
         required: true
     },
     engine: {

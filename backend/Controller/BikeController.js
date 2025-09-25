@@ -1,31 +1,37 @@
-const mongose = require('mongoose');
+const mongoose = require('mongoose');
 const Bike = require('../Models/BikesModel');
-const express = require('express');
 
 // CREATE BIKE
-exports.createBike = async (req, res) => {
-    try {
-        const { brand, model, production_year, engine, description, price, location } = req.body;   
-        if (!brand || !model || !production_year || !engine || !user_id || !image_ids || image_ids.length === 0 || !price || !location) {
-            return res.status(400).json({ message: "All required fields must be provided" });
-        }
-        const user_id = req.user.id;
-        const newBike = new Bike({
-            brand,
-            model,
-            production_year,
-            engine,
-            user_id,
-            description,
-            price,
-            location
-        });
-        const savedBike = await newBike.save();
-        res.status(201).json(savedBike);
-    } catch (err) {
-        console.error("Create bike error:", err);
-        res.status(500).json({ message: err.message });
+const createBike = async (req, res) => {
+  try {
+    const { brand, model, production_year, engine, description, price, location } = req.body;
+
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ message: 'Authentication required' });
     }
+    if (!brand || !model || !production_year || !engine || !price || !location) {
+      return res.status(400).json({ message: 'All required fields must be provided' });
+    }
+
+    const user_id = req.user._id;
+
+    const newBike = new Bike({
+      brand,
+      model,
+      production_year,
+      engine,
+      user_id,
+      description,
+      price,
+      location,
+    });
+
+    const savedBike = await newBike.save();
+    res.status(201).json(savedBike);
+  } catch (err) {
+    console.error('Create bike error:', err);
+    res.status(500).json({ message: err.message });
+  }
 };
 
 // GET ALL BIKES
@@ -105,4 +111,12 @@ const deleteBike = async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: "Server error", error });
   }
+};
+
+module.exports = {
+  createBike,
+  getAllBikes,
+  getBikeById,
+  updateBike,
+  deleteBike,
 };
