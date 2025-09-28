@@ -11,7 +11,7 @@ function App() {
       <Navigation />
      <Routes>
       <Route path="/login" element={<LoginComp />} />
-      <Route path="/signup" element={<SignUpComp />} />
+      <Route path="/register" element={<SignUpComp />} />
      </Routes>
       <FooterComp />
     </div>
