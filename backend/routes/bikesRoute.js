@@ -25,9 +25,8 @@ const { authenticateToken } = require("../Controller/authenticate");
 
 const { uploadImages } = require("../Controller/ImageController");
 
-// ROUTES
 if (upload) {
-  router.post('/upload', upload.array('images'), uploadImages);
+  router.post("/upload", authenticateToken, upload.array("images", 12), uploadImages);
 } else {
   router.post('/upload', (req, res) => res.status(501).json({ message: 'Image upload not available (multer not installed)' }));
 }

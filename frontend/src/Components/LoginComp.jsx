@@ -15,7 +15,14 @@ export default function LoginForm() {
 
   useEffect(() => {
     const existing = getAuthToken();
-    if (existing) setAuthToken(existing, { persist: true });
+    if (existing) {
+      setAuthToken(existing, { persist: true });
+    }
+  }, []);
+
+  useEffect(() => {
+    document.body.classList.add("bg-login-hero");
+    return () => document.body.classList.remove("bg-login-hero");
   }, []);
 
   const handleChange = (e) => {
@@ -35,26 +42,25 @@ export default function LoginForm() {
     try {
       const base = process.env.REACT_APP_API_URL || "http://localhost:5000";
       const res = await axios.post(`${base}/api/login`, { email, password });
+
+      console.log("Login response data:", res?.data);
+
       const token = res?.data?.token;
       if (!token) throw new Error("No token returned from server");
 
       setAuthToken(token, { persist: !!remember });
+
+      console.log("Stored token:", getAuthToken());
+
       setSuccess("Logged in — redirecting...");
-      setTimeout(() => navigate("/"), 800);
+      setTimeout(() => navigate("/"), 700);
     } catch (err) {
+      console.error("Login error:", err);
       setError(err?.response?.data?.message || err.message || "Login failed");
     } finally {
       setIsLoading(false);
     }
   };
-
-  useEffect(() => {
-  document.body.classList.add("bg-login-hero");
-
-  return () => {
-    document.body.classList.remove("bg-login-hero");
-  };
-}, []);
 
   return (
     <main className="login-form-page d-flex align-items-center justify-content-center">
@@ -62,7 +68,7 @@ export default function LoginForm() {
         <div className="card-body p-5">
           <div className="d-flex justify-content-center mb-3">
             <div className="avatar">
-              <img src={helmet} alt="Helmet Icon" viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" />
+              <img src={helmet} alt="Helmet Icon" width="36" height="36" aria-hidden="true" />
             </div>
           </div>
 
