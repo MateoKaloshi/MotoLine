@@ -82,7 +82,7 @@ export default function UploadImagesComp() {
   return (
     <main className="container py-4">
       <Card className="p-3">
-        <h5>Upload images for bike</h5>
+        <h5>Upload your bike images</h5>
         {error && <div className="alert alert-danger">{error}</div>}
 
         <input type="file" accept="image/*" multiple onChange={onFileChange} />

@@ -122,7 +122,7 @@ export default function CreateBikeComp() {
       <div className="bike-form-wrapper bg-bike-hero w-100 d-flex align-items-center justify-content-center py-5">
         <Card className="bike-form-card shadow-lg">
           <Card.Body className="p-4 p-lg-5">
-            <h3 className="text-center mb-4">Create a Bike</h3>
+            <h3 className="text-center mb-4">Add a Bike</h3>
 
             {success && <div className="alert alert-success">{success}</div>}
             {error && <div className="alert alert-danger">{error}</div>}
