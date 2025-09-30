@@ -1,0 +1,59 @@
+/* src/CSS/homeStyle.css */
+
+/* Container spacing */
+.container {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+/* Card styles */
+.card {
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  border-color: #dc3545; /* Bootstrap red */
+}
+
+/* Card image */
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+/* Card body */
+.card-body {
+  padding: 1rem;
+}
+
+/* Card title */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+/* Card text */
+.card-text {
+  font-size: 0.95rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Button */
+.btn-danger {
+  background-color: #dc3545;
+  border: none;
+  transition: background-color 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #b02a37;
+}

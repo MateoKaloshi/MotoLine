@@ -4,15 +4,7 @@ import motolinelogo from "../Images/Navigation/MotoLineLogo.png";
 import menulogo from "../Images/Navigation/menu.png";
 import searchIcon from "../Images/Navigation/searchicon.png";
 import "../CSS/navigationStyle.css";
-import {
-  Navbar,
-  Nav,
-  NavDropdown,
-  Container,
-  Form,
-  FormControl,
-  InputGroup,
-} from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Container, Form, FormControl, InputGroup } from "react-bootstrap";
 import { getAuthToken, clearAuthToken } from "../utils/auth";
 
 export default function Navigation() {
@@ -20,19 +12,11 @@ export default function Navigation() {
   const [token, setToken] = useState(() => getAuthToken());
 
   useEffect(() => {
-    // handler for same-tab changes (dispatched from setAuthToken)
     const onAuthChanged = (e) => {
       const newToken = (e && e.detail && e.detail.token) ?? getAuthToken();
       setToken(newToken);
     };
 
-    const handleLogout = () => {
-    clearAuthToken();
-    setToken(null);
-    navigate("/login");
-  };
-
-    // handler for other tabs/windows (storage event)
     const onStorage = (e) => {
       if (e.key === "authToken") {
         setToken(e.newValue);
@@ -50,22 +34,36 @@ export default function Navigation() {
 
   const handleLogout = () => {
     clearAuthToken();
-     console.log("Token after logout:", getAuthToken());
     setToken(null);
     navigate("/login");
   };
 
-  // Common brand + brands dropdown JSX extracted to reuse
+  const popperConfig = {
+    strategy: "fixed",
+    modifiers: [
+      { name: "offset", options: { offset: [0, 6] } },
+      { name: "preventOverflow", options: { boundary: "viewport", padding: 8 } },
+    ],
+  };
+
+  // Brand + brands dropdown
   const BrandAndLinks = (
     <>
-      <Navbar.Brand as={Link} to="/" className="brandStyle hoverStyle">
-        <img src={motolinelogo} alt="MotoLine Logo" style={{ width: 200, height: 40 }} />
+      <Navbar.Brand as={Link} to="/" className="brandStyle no-scale">
+        <img src={motolinelogo} alt="MotoLine Logo" className="brandImg" style={{ width: 200, height: 40 }} />
       </Navbar.Brand>
 
       <Nav className="me-auto">
         <Nav.Link as={Link} to="/" className="hoverStyle">Home</Nav.Link>
 
-        <NavDropdown title="Select Brand" id="basic-nav-dropdown" className="brand-dropdown hoverStyle">
+        <NavDropdown
+          title="Select Brand"
+          id="basic-nav-dropdown"
+          className="brand-dropdown no-scale"
+          align="start"
+          flip={true}
+          popperConfig={popperConfig}
+        >
           <NavDropdown.Item href="#topbrands">Top Brands</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="#honda">Honda</NavDropdown.Item>
@@ -114,8 +112,9 @@ export default function Navigation() {
               <NavDropdown
                 title={<img src={menulogo} alt="Menu" style={{ width: 30, height: 30 }} />}
                 id="loggedin-menu"
-                className="menuStyle hoverStyle no-arrow"
+                className="menuStyle hoverStyle no-scale"
                 align="end"
+                popperConfig={popperConfig}
               >
                 <NavDropdown.Item onClick={handleLogout}>Log Out</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/profile">Profile</NavDropdown.Item>
@@ -130,8 +129,9 @@ export default function Navigation() {
               <NavDropdown
                 title={<img src={menulogo} alt="Menu" style={{ width: 25, height: 25 }} />}
                 id="loggedout-menu"
-                className="menuStyle hoverStyle no-arrow"
+                className="menuStyle hoverStyle no-scale"
                 align="end"
+                popperConfig={popperConfig}
               >
                 <NavDropdown.Item as={Link} to="/about">About Us</NavDropdown.Item>
                 <NavDropdown.Item as={Link} to="/contact">Contact Us</NavDropdown.Item>

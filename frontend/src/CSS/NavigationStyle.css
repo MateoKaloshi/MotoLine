@@ -1,8 +1,13 @@
 .brandStyle{
     width: 200px;
     height: 40px;
-    padding: 0%;
+    padding: 0;
+}
 
+.brandImg {
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 .brand-dropdown .dropdown-menu {
@@ -19,15 +24,14 @@
     margin-left: 20px;
 }
 
-.hoverStyle:hover{
+.hoverStyle:not(.no-scale):hover{
     cursor: pointer;
-    transform: scale(1.1);
-    transition: transform 0.2s;
+    transform: scale(1.07);
+    transition: transform 0.18s;
 }
 
-.searchStyle:focus ~ .searchLogo {
-  margin-left: 300px;
-  transition: width 0.8s ease;
+.no-scale:hover {
+  transform: none !important;
 }
 
 .searchWidth{
@@ -46,7 +50,18 @@
   cursor: pointer;
 }
 
-/* Responsive styles */
+.navbar,
+.container,
+.container-fluid,
+.navbar-collapse {
+  overflow: visible !important;
+}
+
+.dropdown-menu {
+  z-index: 10550 !important;
+  will-change: transform;
+}
+
 @media (max-width: 991px) {
   .brandStyle {
     width: 150px;
@@ -94,22 +109,6 @@
   }
 }
 
-/* Additional responsive helpers */
-.brandImg {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-
-.searchInput {
-  width: 100%;
-}
-
-.custom-search .form-control {
-  min-width: 0; /* allow shrinking inside flex containers */
-}
-
-/* When navbar is collapsed, stack items and make links full width for easier tapping */
 @media (max-width: 991px) {
   .navbar-collapse .nav {
     width: 100%;
@@ -139,7 +138,6 @@
   }
 }
 
-/* Tweak dropdown menu on small screens so it doesn't overflow */
 @media (max-width: 480px) {
   .brand-dropdown .dropdown-menu {
     left: 0 !important;
@@ -148,7 +146,6 @@
   }
 }
 
-/* Make collapse area stack vertically and allow full-width controls */
 @media (max-width: 991px) {
   .navbar-collapse {
     display: flex;
@@ -156,7 +153,6 @@
     align-items: stretch;
   }
 
-  /* Ensure nav (links) occupy full width and appear first */
   .navbar-collapse .me-auto {
     order: 1;
     width: 100%;
@@ -164,7 +160,6 @@
     padding: 0.25rem 0;
   }
 
-  /* Search goes below nav */
   .searchWidth {
     order: 2;
     width: 100%;
@@ -176,7 +171,6 @@
     max-width: none !important;
   }
 
-  /* Actions (login + menu) stack below search */
   .navbar-collapse .d-flex.align-items-center {
     order: 3;
     width: 100%;
@@ -192,9 +186,8 @@
     padding: 0.5rem 0.75rem;
   }
 
-  /* Make dropdown menus full-width inside collapse for easier tapping */
   .navbar-collapse .dropdown-menu {
-    position: static;
+    position: static !important;
     float: none;
     width: 100%;
     box-shadow: none;

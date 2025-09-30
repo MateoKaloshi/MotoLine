@@ -16,9 +16,9 @@ try {
 const {
   createBike,
   getAllBikes,
-  getBikeById,
-  updateBike,
-  deleteBike
+  getModel, 
+  getEngine,
+ getBikeById
 } = require("../Controller/BikeController");
 
 const { authenticateToken } = require("../Controller/authenticate");
@@ -33,8 +33,9 @@ if (upload) {
 
 router.post('/bikes', authenticateToken, createBike);
 router.get("/bikes", getAllBikes);
+router.get("/bikes/models", getModel);
+router.get("/bikes/engines", getEngine);
 router.get("/bikes/:id", getBikeById);
-router.put("/bikes/:id", authenticateToken, updateBike);
-router.delete("/bikes/:id", authenticateToken, deleteBike);
+
 
 module.exports = router;

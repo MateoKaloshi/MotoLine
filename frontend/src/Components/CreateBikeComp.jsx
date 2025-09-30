@@ -1,8 +1,10 @@
+// src/Components/CreateBikeComp.jsx
 import React, { useState, useEffect } from "react";
-import { Form, Button, Card, Spinner, Row, Col } from "react-bootstrap";
+import { Form, Button, Card, Spinner, Row, Col, InputGroup } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate, Navigate } from "react-router-dom";
-import "../CSS/createBikeStyle.css";
+import "../CSS/createBikeStyle.css"; // <- using register CSS so the UI matches register page
+import helmet from "../Images/Login/helmeticon.png";
 import { getAuthToken } from "../utils/auth";
 
 export default function CreateBikeComp() {
@@ -25,8 +27,34 @@ export default function CreateBikeComp() {
 
   const [authToken, setAuthToken] = useState(() => getAuthToken());
 
+  const [models, setModels] = useState([]);
+
+
   const navigate = useNavigate();
 
+  const [engineOptions, setEngineOptions] = useState([]);
+
+// Fetch engines when brand & model change
+useEffect(() => {
+  if (form.brand && form.model) {
+    axios
+      .get(`http://localhost:5000/api/bikes/engines`, {
+        params: { brand: form.brand, model: form.model }
+      })
+      .then(res => {
+        setEngineOptions(res.data.engines || []);
+      })
+      .catch(err => {
+        console.error("Error fetching engines", err);
+        setEngineOptions([]);
+      });
+  } else {
+    setEngineOptions([]); // reset if brand/model not chosen
+  }
+}, [form.brand, form.model]);
+
+
+  // preserve auth change logic exactly as before
   useEffect(() => {
     function onAuthChanged() {
       setAuthToken(getAuthToken());
@@ -40,6 +68,22 @@ export default function CreateBikeComp() {
     };
   }, []);
 
+useEffect(() => {
+  if (form.brand) {
+    axios.get("http://localhost:5000/api/bikes/models", {
+      params: { brand: form.brand }
+    })
+    .then(res => setModels(res.data.models || []))
+    .catch(err => {
+      console.error("Error fetching models:", err);
+      setModels([]);
+    });
+  } else {
+    setModels([]);
+  }
+}, [form.brand]);
+
+
   useEffect(() => {
     if (authToken) {
       axios.defaults.headers.common["Authorization"] = `Bearer ${authToken}`;
@@ -47,6 +91,12 @@ export default function CreateBikeComp() {
       delete axios.defaults.headers.common["Authorization"];
     }
   }, [authToken]);
+
+  // add the same page background body class as register page (UI only)
+  useEffect(() => {
+    document.body.classList.add("bg-createbike-hero");
+    return () => document.body.classList.remove("bg-createbike-hero");
+  }, []);
 
   if (!authToken) {
     return <Navigate to="/login" replace />;
@@ -91,8 +141,8 @@ export default function CreateBikeComp() {
       });
 
       const createdBike =
-        res?.data?.bike || 
-        res?.data ||      
+        res?.data?.bike ||
+        res?.data ||
         null;
 
       const bikeId = createdBike?._id || createdBike?.id || (res?.data?.savedBike && res.data.savedBike._id);
@@ -118,110 +168,217 @@ export default function CreateBikeComp() {
   };
 
   return (
-    <main className="bike-form-page d-flex align-items-center justify-content-center">
-      <div className="bike-form-wrapper bg-bike-hero w-100 d-flex align-items-center justify-content-center py-5">
-        <Card className="bike-form-card shadow-lg">
-          <Card.Body className="p-4 p-lg-5">
-            <h3 className="text-center mb-4">Add a Bike</h3>
+    <main className="createbike-form-page d-flex align-items-center justify-content-center">
+      <Card className="createbike-form-card shadow-lg">
+        <Card.Body className="p-4 p-lg-5">
+          <div className="d-flex justify-content-center mb-3">
+            <div className="avatar">
+              <img src={helmet} alt="Helmet Icon" width="36" height="36" />
+            </div>
+          </div>
 
-            {success && <div className="alert alert-success">{success}</div>}
-            {error && <div className="alert alert-danger">{error}</div>}
+          <h3 className="text-center mb-4">SELL YOUR MOTORCYCLE</h3>
 
-            <Form onSubmit={handleSubmit} noValidate>
-              <Row>
-                <Col md={6}>
-                  <Form.Group className="mb-3" controlId="brand">
-                    <Form.Label>Brand</Form.Label>
-                    <Form.Control
-                      name="brand"
-                      value={form.brand}
-                      onChange={handleChange}
-                      placeholder="Brand"
-                      isInvalid={!!fieldErrors.brand}
-                    />
-                    <Form.Control.Feedback type="invalid">{fieldErrors.brand}</Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
+          {success && <div className="alert alert-success">{success}</div>}
+          {error && <div className="alert alert-danger">{error}</div>}
 
-                <Col md={6}>
-                  <Form.Group className="mb-3" controlId="model">
-                    <Form.Label>Model</Form.Label>
-                    <Form.Control
-                      name="model"
-                      value={form.model}
-                      onChange={handleChange}
-                      placeholder="Model"
-                      isInvalid={!!fieldErrors.model}
-                    />
-                    <Form.Control.Feedback type="invalid">{fieldErrors.model}</Form.Control.Feedback>
-                  </Form.Group>
-                </Col>
-              </Row>
+          <Form onSubmit={handleSubmit} noValidate>
+            <Row>
+              <Col md={6}>
+               <Form.Group className="mb-3" controlId="brand">
+  <Form.Label>Brand</Form.Label>
+  <InputGroup className="createbike-input-group input-group-lg">
+    <InputGroup.Text className="bg-white border-end-0" id="brand-addon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M3 6h18v2H3zM3 10h18v2H3zM3 14h18v2H3z"
+        />
+      </svg>
+    </InputGroup.Text>
 
-              <Form.Group className="mb-3" controlId="production_year">
-                <Form.Label>Production Year</Form.Label>
+    <Form.Select
+      name="brand"
+      value={form.brand}
+      onChange={handleChange}
+      className="border-start-0"
+      aria-describedby="brand-addon"
+      isInvalid={!!fieldErrors.brand}
+    >
+      <option value="">Select a brand</option>
+      <option value="Honda">Honda</option>
+      <option value="Yamaha">Yamaha</option>
+      <option value="Suzuki">Suzuki</option>
+      <option value="Kawasaki">Kawasaki</option>
+      <option value="Ducati">Ducati</option>
+      <option value="BMW">BMW</option>
+      <option value="KTM">KTM</option>
+      <option value="Harley-Davidson">Harley-Davidson</option>
+      <option value="Triumph">Triumph</option>
+      <option value="Aprilia">Aprilia</option>
+      <option value="Indian Motorcycle">Indian Motorcycle</option>
+      <option value="Royal Enfield">Royal Enfield</option>
+    </Form.Select>
+
+    <Form.Control.Feedback type="invalid">
+      {fieldErrors.brand}
+    </Form.Control.Feedback>
+  </InputGroup>
+</Form.Group>
+              </Col>
+
+              <Col md={6}>
+              <Form.Group className="mb-3" controlId="model">
+  <Form.Label>Model</Form.Label>
+  <InputGroup className="createbike-input-group input-group-lg">
+    <InputGroup.Text className="bg-white border-end-0" id="model-addon">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="18"
+        height="18"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M12 2l4 7h-8l4-7zm0 9a7 7 0 1 0 0 14 7 7 0 0 0 0-14z"
+        />
+      </svg>
+    </InputGroup.Text>
+
+    <Form.Select
+      name="model"
+      value={form.model}
+      onChange={handleChange}
+      className="border-start-0"
+      aria-describedby="model-addon"
+      isInvalid={!!fieldErrors.model}
+      disabled={!form.brand} // disable until a brand is chosen
+    >
+      <option value="">Select a model</option>
+      {models.map((m, idx) => (
+        <option key={idx} value={m}>
+          {m}
+        </option>
+      ))}
+    </Form.Select>
+
+    <Form.Control.Feedback type="invalid">
+      {fieldErrors.model}
+    </Form.Control.Feedback>
+  </InputGroup>
+</Form.Group>
+
+              </Col>
+            </Row>
+
+            <Form.Group className="mb-3" controlId="production_year">
+              <Form.Label>Production Year</Form.Label>
+              <InputGroup className="createbike-input-group input-group-lg">
+                <InputGroup.Text className="bg-white border-end-0" id="year-addon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7 10h2v2H7zM11 10h2v2h-2zM15 10h2v2h-2zM5 4h14v2H5zM5 20h14v-2H5z" />
+                  </svg>
+                </InputGroup.Text>
                 <Form.Control
                   type="number"
+                  className="border-start-0"
                   name="production_year"
                   value={form.production_year}
                   onChange={handleChange}
                   min="1900"
                   max={new Date().getFullYear()}
                   placeholder="e.g. 2022"
+                  aria-describedby="year-addon"
                   isInvalid={!!fieldErrors.production_year}
                 />
                 <Form.Control.Feedback type="invalid">{fieldErrors.production_year}</Form.Control.Feedback>
-              </Form.Group>
+              </InputGroup>
+            </Form.Group>
 
-              <Form.Group className="mb-3" controlId="engine">
-                <Form.Label>Engine</Form.Label>
-                <Form.Select
-                  name="engine"
-                  value={form.engine}
-                  onChange={handleChange}
-                  isInvalid={!!fieldErrors.engine}
-                >
-                  <option value="">Select engine type</option>
-                  <option value="50cc">50cc</option>
-                  <option value="125cc">125cc</option>
-                  <option value="250cc">250cc</option>
-                  <option value="500cc">500cc</option>
-                  <option value="600cc">600cc</option>
-                  <option value="750cc">750cc</option>
-                  <option value="1000cc">1000cc</option>
-                  <option value="1200cc">1200cc</option>
-                  <option value="1500cc">1500cc</option>
-                </Form.Select>
-                <Form.Control.Feedback type="invalid">{fieldErrors.engine}</Form.Control.Feedback>
-              </Form.Group>
+           <Form.Group className="mb-3" controlId="engine">
+  <Form.Label>Engine</Form.Label>
+  <InputGroup className="createbike-input-group input-group-lg">
+    <InputGroup.Text className="bg-white border-end-0" id="engine-addon">
+      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M3 12h18v2H3zM3 6h18v2H3zM3 18h18v2H3z" />
+      </svg>
+    </InputGroup.Text>
 
-              <Form.Group className="mb-3" controlId="price">
-                <Form.Label>Price (€)</Form.Label>
+    <Form.Select
+      name="engine"
+      value={form.engine}
+      onChange={handleChange}
+      aria-describedby="engine-addon"
+      className="border-start-0"
+      isInvalid={!!fieldErrors.engine}
+    >
+      <option value="">Select engine type</option>
+      {engineOptions.map((eng, idx) => (
+        <option key={idx} value={eng}>
+          {eng}
+        </option>
+      ))}
+    </Form.Select>
+
+    <Form.Control.Feedback type="invalid">
+      {fieldErrors.engine}
+    </Form.Control.Feedback>
+  </InputGroup>
+</Form.Group>
+
+
+            <Form.Group className="mb-3" controlId="price">
+              <Form.Label>Price (€)</Form.Label>
+              <InputGroup className="createbike-input-group input-group-lg">
+                <InputGroup.Text className="bg-white border-end-0" id="price-addon">€</InputGroup.Text>
                 <Form.Control
                   type="number"
                   name="price"
                   value={form.price}
                   onChange={handleChange}
                   placeholder="Enter price"
+                  aria-describedby="price-addon"
+                  className="border-start-0"
                   isInvalid={!!fieldErrors.price}
                 />
                 <Form.Control.Feedback type="invalid">{fieldErrors.price}</Form.Control.Feedback>
-              </Form.Group>
+              </InputGroup>
+            </Form.Group>
 
-              <Form.Group className="mb-3" controlId="location">
-                <Form.Label>Location</Form.Label>
+            <Form.Group className="mb-3" controlId="location">
+              <Form.Label>Location</Form.Label>
+              <InputGroup className="createbike-input-group input-group-lg">
+                <InputGroup.Text className="bg-white border-end-0" id="loc-addon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M12 2C8.1 2 5 5.1 5 9c0 5.3 6.1 11.4 6.4 11.7.2.2.5.3.8.3s.6-.1.8-.3C12.9 20.4 19 14.3 19 9c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5 2.5 2.5 0 0 1 12 11.5z" />
+                  </svg>
+                </InputGroup.Text>
                 <Form.Control
                   name="location"
                   value={form.location}
                   onChange={handleChange}
                   placeholder="Enter location"
+                  aria-describedby="loc-addon"
+                  className="border-start-0"
                   isInvalid={!!fieldErrors.location}
                 />
                 <Form.Control.Feedback type="invalid">{fieldErrors.location}</Form.Control.Feedback>
-              </Form.Group>
+              </InputGroup>
+            </Form.Group>
 
-              <Form.Group className="mb-3" controlId="description">
-                <Form.Label>Description</Form.Label>
+            <Form.Group className="mb-3" controlId="description">
+              <Form.Label>Description</Form.Label>
+              <InputGroup className="createbike-input-group input-group-lg">
+                <InputGroup.Text className="bg-white border-end-0" id="desc-addon">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M4 4h16v2H4zM4 8h10v2H4zM4 12h16v2H4zM4 16h8v2H4z" />
+                  </svg>
+                </InputGroup.Text>
                 <Form.Control
                   as="textarea"
                   rows={3}
@@ -229,31 +386,33 @@ export default function CreateBikeComp() {
                   value={form.description}
                   onChange={handleChange}
                   placeholder="Bike description"
+                  aria-describedby="desc-addon"
+                  className="border-start-0"
                 />
-              </Form.Group>
+              </InputGroup>
+            </Form.Group>
 
-              <div className="d-grid mb-3">
-                <Button
-                  variant="primary"
-                  size="lg"
-                  className="bike-buttonStyle"
-                  type="submit"
-                  disabled={isLoading}
-                >
-                  {isLoading ? (
-                    <>
-                      <Spinner animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
-                      Saving...
-                    </>
-                  ) : (
-                    "Create Bike"
-                  )}
-                </Button>
-              </div>
-            </Form>
-          </Card.Body>
-        </Card>
-      </div>
+            <div className="d-grid mb-3">
+              <Button
+                variant="primary"
+                size="lg"
+                className="createbike-buttonStyle"
+                type="submit"
+                disabled={isLoading}
+              >
+                {isLoading ? (
+                  <>
+                    <Spinner animation="border" size="sm" role="status" aria-hidden="true" className="me-2" />
+                    Saving...
+                  </>
+                ) : (
+                  "Next section"
+                )}
+              </Button>
+            </div>
+          </Form>
+        </Card.Body>
+      </Card>
     </main>
   );
 }

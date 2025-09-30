@@ -1,4 +1,4 @@
-const Bike = require("../Models/BikesModel");
+const Bike = require("../Models/PostBikesModel");
 const Image = require("../Models/ImagesModel");
 
 const uploadImages = async (req, res) => {

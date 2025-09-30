@@ -3,6 +3,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
+const path = require("path");
 require("dotenv").config();
 
 const loginRoute = require("./routes/loginRoute");
@@ -36,6 +37,14 @@ mongoose
 app.use("/api", loginRoute);
 app.use("/api", bikeRoute);
 
+app.use("/uploads", (req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", process.env.FRONTEND_ORIGIN || "http://localhost:3000");
+  next();
+}, express.static(path.join(__dirname, "uploads")));
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+app.use('/api/bikes', require('./routes/bikeImages'));
 
 app.use("/", (req, res) => {
   res.send("Hello World");
