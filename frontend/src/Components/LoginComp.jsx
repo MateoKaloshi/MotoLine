@@ -255,7 +255,7 @@ export default function LoginForm() {
             <div className="text-center mt-2">
               <p className="mb-0">
                 Don't have an account?{" "}
-                <Link to="/signup" className="login-createStyle">
+                <Link to="/register" className="login-createStyle">
                   Create one
                 </Link>
               </p>
