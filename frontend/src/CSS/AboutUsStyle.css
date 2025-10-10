@@ -1,12 +1,6 @@
-/* About Us - namespaced to ml- to avoid Bootstrap conflicts
-   - Forces 3 columns on wide screens (3 up, 3 down for 6 cards)
-   - Responsive: 2 columns on medium, 1 column on small
-   - Reduced top spacing so logo sits close to navbar/content
-*/
-
 .ml-aboutus-container {
   background-color: #f9f9f9;
-  padding: 0; /* removed outer padding so section starts immediately */
+  padding: 0;
   font-family: "Segoe UI", Roboto, sans-serif;
   color: #333;
 }
@@ -18,7 +12,7 @@
   text-align: center;
 }
 
-/* Large logo — pulled up with negative top margin so it's near the navbar */
+/* Large logo */
 .ml-aboutus-logo img {
   width: 380px;
   height: 380px;
@@ -33,7 +27,7 @@
   font-size: 32px;
   font-weight: 800;
   color: #111;
-  margin: 8px 0 12px; /* tightened top and bottom spacing */
+  margin: 8px 0 12px;
 }
 
 .ml-aboutus-description {
@@ -65,7 +59,6 @@
   justify-content: center;
 }
 
-/* These are AboutUs-specific buttons (do not conflict with Bootstrap) */
 .ml-btn-primary {
   background-color: #111;
   color: #fff;
@@ -96,7 +89,7 @@
   align-items: start; /* keep card tops aligned */
 }
 
-/* Card styles namespaced to ml-card */
+/* Card styles */
 .ml-card {
   background-color: #fff;
   border-radius: 10px;
@@ -141,7 +134,6 @@
   margin-left: 12px;
 }
 
-/* Remove big left margin for short paragraphs inside cards so layout looks neat */
 .ml-card > p {
   margin-left: 0;
 }
@@ -159,7 +151,7 @@
   margin-top: 20px;
 }
 
-/* Link style only for AboutUs */
+/* Link style */
 .ml-link {
   color: #d61c1c;
   text-decoration: none;
@@ -170,9 +162,6 @@
   text-decoration: underline;
 }
 
-/* Responsive breakpoints */
-
-/* Medium screens: 2 columns, less negative top margin */
 @media (max-width: 1000px) {
   .ml-aboutus-grid {
     grid-template-columns: repeat(2, 1fr);

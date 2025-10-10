@@ -37,7 +37,6 @@
   display: inline-block;
 }
 
-/* Keep markup safe if an <img> gets rendered — hide it visually */
 .contact-form-card .avatar img {
   display: none !important;
   width: 0;
@@ -73,7 +72,7 @@
   height: 0;
 }
 
-/* specific addon backgrounds (unique IDs to avoid collisions) */
+/* specific addon backgrounds */
 .input-group-text#contact-fname-addon {
   background-image: url("../Images/Contact/user.png");
   background-repeat: no-repeat;

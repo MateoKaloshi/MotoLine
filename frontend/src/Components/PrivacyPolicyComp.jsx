@@ -18,7 +18,7 @@ export default function PrivacyPolicy() {
 
         {/* Title + description */}
         <div className="text-center mb-3">
-          <h1 className="ml-privacy-title">MotoLine - Privacy Policy</h1>
+          <h1 className="ml-privacy-title">MotoLine ⁃ Privacy Policy</h1>
           <p className="text-muted ml-privacy-desc mb-0">
             How we collect, use and protect your information when you use MotoLine.
           </p>
@@ -31,7 +31,7 @@ export default function PrivacyPolicy() {
               <div className="card-body">
                 <h5 className="card-title">Information we collect</h5>
                 <ul className="mb-0 ps-3">
-                  <li>Account info: name, email, password (hashed), avatar.</li>
+                  <li>Account info: name, email, password, avatar.</li>
                   <li>Listings: photos, specs, VIN, price, location.</li>
                   <li>Messages between buyers and sellers.</li>
                   <li>Usage data: cookies & analytics.</li>
@@ -105,8 +105,7 @@ export default function PrivacyPolicy() {
 
                 <div className="mt-auto">
                   <p className="mb-1 small">
-                    For privacy requests visit our <Link to="/contact">Contact</Link> page
-                    or email <a href="mailto:privacy@motoline.example">privacy@motoline.example</a>.
+                    For privacy requests visit our <Link to="/contact">contact</Link> page.
                   </p>
                 </div>
               </div>
