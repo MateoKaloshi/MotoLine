@@ -18,7 +18,7 @@ import engineicon from "../Images/CreateBike/engineicon.png";
 import moneyicon from "../Images/CreateBike/moneyicon.png";
 import locationicon from "../Images/CreateBike/locationicon.png";
 import motorcycleicon from "../Images/CreateBike/motorcycleicon.png";
-import modelicon from "../Images/CreateBike/modelicon.png";
+import modelicon from "../Images/CreateBike/modelicon.png"
 
 export default function CreateBikeComp() {
   const [form, setForm] = useState({

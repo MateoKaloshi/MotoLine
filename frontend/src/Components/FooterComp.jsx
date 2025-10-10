@@ -1,5 +1,6 @@
 import React from "react";
 import "../CSS/footerStyle.css";
+import { Link } from "react-router-dom";
 import logo from "../Images/Footer/footerlogo.png";
 import fb from "../Images/Footer/facebook.png";
 import ig from "../Images/Footer/instagram.png";
@@ -49,7 +50,10 @@ const FooterComp = () => {
                 </a>
               </li>
               <li className="footer_listStyle">
-                <a href="/privacypolicy" className="text-light text-decoration-none">
+                <a
+                  href="/privacypolicy"
+                  className="text-light text-decoration-none"
+                >
                   <h4 className="footer_bottomTextStyle">Privacy Policy</h4>
                 </a>
               </li>
@@ -92,7 +96,9 @@ const FooterComp = () => {
                 className="form-control me-sm-2 mb-2 mb-sm-0"
                 placeholder="Your email address"
               />
-              <a href="/register"><button className="btn btn-danger">Subscribe</button></a>
+              <Link to="/register">
+                <button className="btn btn-danger">Subscribe</button>
+              </Link>
             </form>
             <div className="mt-3">
               <a href="https://www.facebook.com/" target="_blank">

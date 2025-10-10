@@ -1,6 +1,8 @@
 import React from "react";
 import { Card, Button, Container, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import { getAuthToken } from "../utils/auth";
+
 
 const SettingsPageComp = () => {
   const navigate = useNavigate();
