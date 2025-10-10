@@ -1,0 +1,132 @@
+/* src/CSS/registerStyle.css - mirrors login style but scoped to register */
+
+.register-form-page {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+}
+
+.register-form-card {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 12px;
+}
+
+.register-form-card .card-body {
+  padding: 2rem;
+}
+
+.input-group-text {
+  background: #fff;
+  border-right: 0;
+}
+
+.input-group .form-control {
+  border-left: 0;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+}
+
+.bg-register-hero {
+  background-image:
+    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
+    url('../Images/Login/loginbackground.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.register-form-page { 
+  background: transparent;
+}
+
+.register-form-card { 
+  background: rgba(255,255,255,0.96);
+}
+
+.register-buttonStyle {
+  background-color: #b83f20;
+  border-color: #b83f20;
+}
+
+.register-buttonStyle:hover {
+  background-color: #f15252;
+  border-color: #f15252;
+}
+
+.register-buttonStyle:focus:active {
+  background-color: #f15252;
+  border-color: #f15252;
+}
+
+.register-createStyle {
+  color: #b83f20;
+  font-weight: 500;
+  text-underline-offset: 3px;
+  text-decoration: none;
+}
+
+.register-createStyle:hover {
+  color: #f15252;
+  text-decoration: underline;
+}
+
+.register-input-group .form-control:focus,
+.register-input-group .form-control:focus-visible {
+  outline: none;
+  box-shadow: none !important;
+  border-color: transparent;
+}
+
+.register-input-group .input-group-text:focus,
+.register-input-group .input-group-text:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.register-input-group {
+  border: 1px solid #ced4da;
+  border-radius: .5rem;
+  overflow: hidden;
+}
+
+.register-input-group:focus-within {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 .15rem rgba(220,53,69,.18);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+:root { --theme-red: #B33020; }
+
+.btn:disabled,
+.btn.disabled,
+.btn[disabled] {
+  background-color: var(--theme-red) !important;
+  border-color: var(--theme-red) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+@media (max-width: 576px) {
+  .register-form-card {
+    margin: 0 0.5rem;
+  }
+
+  .register-form-card .card-body {
+    padding: 1.25rem;
+  }
+}
