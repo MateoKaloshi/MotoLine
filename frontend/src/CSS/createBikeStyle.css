@@ -1,0 +1,198 @@
+.createbike-form-page {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background: linear-gradient(180deg, #f8fafc 0%, #eef2f7 100%);
+}
+
+.createbike-form-card {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 12px;
+}
+
+.createbike-form-card .card-body {
+  padding: 2rem;
+}
+
+.input-group-text {
+  background: #fff;
+  border-right: 0;
+}
+
+.input-group .form-control {
+  border-left: 0;
+}
+
+.form-control:focus {
+  box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+  cursor: default !important;
+}
+
+.bg-createbike-hero {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("../Images/CreateBike/createbikebackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+}
+
+.createbike-form-page {
+  background: transparent;
+}
+
+.createbike-form-card {
+  background: rgba(255, 255, 255, 0.96);
+}
+
+.createbike-buttonStyle {
+  background-color: #b83f20;
+  border-color: #b83f20;
+}
+
+.createbike-buttonStyle:hover {
+  background-color: #f15252;
+  border-color: #f15252;
+}
+
+.createbike-buttonStyle:focus:active {
+  background-color: #f15252;
+  border-color: #f15252;
+}
+
+.createbike-createStyle {
+  color: #b83f20;
+  font-weight: 500;
+  text-underline-offset: 3px;
+  text-decoration: none;
+}
+
+.createbike-createStyle:hover {
+  color: #f15252;
+  text-decoration: underline;
+}
+
+.createbike-input-group .form-control:focus,
+.createbike-input-group .form-control:focus-visible {
+  outline: none;
+  box-shadow: none !important;
+  border-color: transparent;
+}
+
+.createbike-input-group .input-group-text:focus,
+.createbike-input-group .input-group-text:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.createbike-input-group {
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.createbike-input-group:focus-within {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.18);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px transparent inset !important;
+  box-shadow: 0 0 0 1000px transparent inset !important;
+  -webkit-text-fill-color: inherit !important;
+  transition: background-color 5000s ease-in-out 0s !important;
+}
+
+:root {
+  --theme-red: #b33020;
+}
+
+.btn:disabled,
+.btn.disabled,
+.btn[disabled] {
+  background-color: var(--theme-red) !important;
+  border-color: var(--theme-red) !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+.createbike-input-group select:focus,
+.createbike-input-group select:focus-visible,
+select:focus,
+select:focus-visible {
+  outline: none;
+  box-shadow: none !important;
+  border-color: transparent;
+}
+
+.createbike-input-group:has(select:focus) {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.18);
+}
+
+.createbike-input-group select option,
+select option {
+  background-color: #fff;
+  color: #000;
+}
+
+.createbike-input-group select option:hover,
+.createbike-input-group select option:focus,
+.createbike-input-group select option:checked,
+select option:hover,
+select option:focus,
+select option:checked {
+  background-color: var(--theme-red) !important;
+  color: #fff !important;
+}
+
+.createbike-input-group select,
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 2.5rem;
+}
+
+.createbike-input-group select {
+  background-image: linear-gradient(45deg, transparent 50%, #6b6b6b 50%),
+    linear-gradient(135deg, #6b6b6b 50%, transparent 50%);
+  background-size: 6px 6px, 6px 6px;
+  background-position: calc(100% - 18px) calc(1em + 2px),
+    calc(100% - 12px) calc(1em + 2px);
+  background-repeat: no-repeat;
+}
+
+.createbike-input-group select::-ms-expand {
+  display: none;
+}
+
+form select option {
+  background-color: white;
+  color: black;
+}
+
+.form select option:hover {
+  background-color: #e60000;
+  color: white;
+}
+
+@media (max-width: 576px) {
+  .createbike-form-card {
+    margin: 0 0.5rem;
+  }
+
+  .createbike-form-card .card-body {
+    padding: 1.25rem;
+  }
+}
+.createbike-form-page * {
+  cursor: default;
+}

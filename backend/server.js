@@ -3,9 +3,13 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const session = require("express-session");
+const path = require("path");
 require("dotenv").config();
 
 const loginRoute = require("./routes/loginRoute");
+const bikeRoute = require("./routes/bikesRoute");
+const userRoute = require("./routes/userRoute");
+const contactRouter = require("./routes/contactRoute");
 
 app.use(
   cors({
@@ -30,8 +34,26 @@ mongoose
   )
   .then(() => console.log("DB connected"))
   .catch((err) => console.log("DB not connected " + err));
-
+app.use("/api", userRoute);
 app.use("/api", loginRoute);
+app.use("/api", bikeRoute);
+app.use("/api", contactRouter);
+
+app.use(
+  "/uploads",
+  (req, res, next) => {
+    res.setHeader(
+      "Access-Control-Allow-Origin",
+      process.env.FRONTEND_ORIGIN || "http://localhost:3000"
+    );
+    next();
+  },
+  express.static(path.join(__dirname, "uploads"))
+);
+
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
+app.use("/api/bikes", require("./routes/bikeImages"));
 
 app.use("/", (req, res) => {
   res.send("Hello World");
