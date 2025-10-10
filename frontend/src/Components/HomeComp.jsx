@@ -12,10 +12,8 @@ import {
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-// stable API base (use env for production)
 const API_BASE = process.env.REACT_APP_API_BASE || "http://localhost:5000";
 
-// inline placeholder svg
 const PLACEHOLDER_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(
   `<svg xmlns="http://www.w3.org/2000/svg" width="600" height="360">
      <rect width="100%" height="100%" fill="#f3f3f3"/>
@@ -23,7 +21,6 @@ const PLACEHOLDER_SVG = `data:image/svg+xml;utf8,${encodeURIComponent(
    </svg>`
 )}`;
 
-// small date helper to avoid external deps
 const formatDate = (iso) => {
   if (!iso) return "";
   try {
@@ -46,7 +43,7 @@ export default function HomeComp() {
   const [totalPages, setTotalPages] = useState(1);
   const bikesPerPage = 20;
 
-  const navigate = useNavigate(); // ✅ initialize navigate
+  const navigate = useNavigate();
 
   useEffect(() => {
     let cancelled = false;
@@ -71,22 +68,18 @@ export default function HomeComp() {
             Math.max(
               1,
               Math.ceil(
-                (res.data.total || (res.data.bikes || []).length) /
-                  bikesPerPage
+                (res.data.total || (res.data.bikes || []).length) / bikesPerPage
               )
             );
           setTotalPages(Math.max(1, pages));
         } else if (Array.isArray(res.data)) {
           setIsServerPaged(false);
           setBikes(res.data);
-          setTotalPages(
-            Math.max(1, Math.ceil(res.data.length / bikesPerPage))
-          );
+          setTotalPages(Math.max(1, Math.ceil(res.data.length / bikesPerPage)));
         } else {
           const maybeBikes = res.data && res.data.bikes ? res.data.bikes : [];
           setIsServerPaged(
-            Array.isArray(maybeBikes) &&
-              (res.data.pages || res.data.total)
+            Array.isArray(maybeBikes) && (res.data.pages || res.data.total)
           );
           setBikes(Array.isArray(maybeBikes) ? maybeBikes : []);
           setTotalPages(res.data && res.data.pages ? res.data.pages : 1);
@@ -109,10 +102,7 @@ export default function HomeComp() {
   const currentBikes = isServerPaged
     ? bikes
     : Array.isArray(bikes)
-    ? bikes.slice(
-        (currentPage - 1) * bikesPerPage,
-        currentPage * bikesPerPage
-      )
+    ? bikes.slice((currentPage - 1) * bikesPerPage, currentPage * bikesPerPage)
     : [];
 
   useEffect(() => {
@@ -129,17 +119,15 @@ export default function HomeComp() {
   const resolveImageSrc = (bike) => {
     if (bike?.firstImageUrl) {
       if (bike.firstImageUrl.startsWith("http")) return bike.firstImageUrl;
-      return `${API_BASE}${
-        bike.firstImageUrl.startsWith("/") ? "" : "/"
-      }${bike.firstImageUrl}`;
+      return `${API_BASE}${bike.firstImageUrl.startsWith("/") ? "" : "/"}${
+        bike.firstImageUrl
+      }`;
     }
     if (Array.isArray(bike?.images) && bike.images.length > 0) {
       const first = bike.images[0];
       if (first?.url) {
         if (first.url.startsWith("http")) return first.url;
-        return `${API_BASE}${first.url.startsWith("/") ? "" : "/"}${
-          first.url
-        }`;
+        return `${API_BASE}${first.url.startsWith("/") ? "" : "/"}${first.url}`;
       }
       if (first?.path) {
         const filename = first.path.split(/[\\/]/).pop();
@@ -161,12 +149,8 @@ export default function HomeComp() {
   return (
     <Container className="my-5">
       <div className="d-flex justify-content-between align-items-center mb-4">
-        <h2 className="mb-0">Available Bikes</h2>
-        {/* ✅ new button */}
-        <Button
-          variant="danger"
-          onClick={() => navigate("/addbike")}
-        >
+        {/* SELL YOU BIKE (button) */}
+        <Button variant="danger" onClick={() => navigate("/addbike")}>
           Sell your bike
         </Button>
       </div>
@@ -186,21 +170,30 @@ export default function HomeComp() {
                 return (
                   <Col
                     key={bike._id || `${bike.brand}-${bike.model}`}
-                    md={3}
-                    className="mb-4"
+                    xs={12}
+                    sm={6}
+                    md={4}
+                    lg={3}
+                    className="mb-4 d-flex"
                   >
                     <div
-                      style={{ ...cardStyle }}
+                      style={{
+                        ...cardStyle,
+                        display: "flex",
+                        flexDirection: "column",
+                        flex: 1,
+                      }}
                       className="homecard"
                       onMouseEnter={(e) =>
-                        (e.currentTarget.style.transform =
-                          "translateY(-6px)")
+                        (e.currentTarget.style.transform = "translateY(-6px)")
                       }
                       onMouseLeave={(e) =>
                         (e.currentTarget.style.transform = "none")
                       }
                     >
-                      <Card style={{ border: "none", borderRadius: 12 }}>
+                      <Card
+                        style={{ border: "none", borderRadius: 12, flex: 1 }}
+                      >
                         <div
                           style={{
                             height: 180,
@@ -212,7 +205,7 @@ export default function HomeComp() {
                           }}
                         >
                           <img
-                            src={imgSrc}
+                            src={resolveImageSrc(bike)}
                             alt={`${bike.brand} ${bike.model}`}
                             style={{
                               width: "100%",
@@ -226,33 +219,36 @@ export default function HomeComp() {
                           />
                         </div>
 
-                        <Card.Body>
+                        <Card.Body
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            flex: 1,
+                          }}
+                        >
                           <div className="d-flex justify-content-between align-items-start mb-2">
                             <div>
                               <Card.Title
-                                style={{ marginBottom: 4, fontSize: 16 }}
+                                style={{ fontSize: 16, marginBottom: 4 }}
                               >
                                 {bike.brand}{" "}
                                 <span
-                                  style={{
-                                    color: "#666",
-                                    fontWeight: 500,
-                                  }}
+                                  style={{ color: "#666", fontWeight: 500 }}
                                 >
                                   {bike.model}
                                 </span>
                               </Card.Title>
-                              <div
-                                style={{ fontSize: 13, color: "#777" }}
-                              >
-                                {bike.location || "Unknown location"}{" "}
-                                {bike.published ? (
+                              <div style={{ fontSize: 13, color: "#777" }}>
+                                {bike.location || "Unknown location"}
+                                {bike.published && (
                                   <span style={{ marginLeft: 6 }}>
                                     • {formatDate(bike.published)}
                                   </span>
-                                ) : null}
+                                )}
                               </div>
                             </div>
+
+                            {/* PRICE + SOLD BADGE (added) */}
                             <div style={{ textAlign: "right" }}>
                               <div
                                 style={{
@@ -261,9 +257,9 @@ export default function HomeComp() {
                                   fontWeight: 700,
                                 }}
                               >
-                                {typeof bike.price === "number"
-                                  ? `${bike.price.toLocaleString()} €`
-                                  : bike.price}
+                                {bike.price
+                                  ? `${Number(bike.price).toLocaleString()} €`
+                                  : "—"}
                               </div>
                               {bike.is_sold && (
                                 <Badge bg="secondary" className="mt-1">
@@ -272,18 +268,16 @@ export default function HomeComp() {
                               )}
                             </div>
                           </div>
-
-                          <div className="d-flex justify-content-between align-items-center">
+                          <div style={{ flex: 1 }} />{" "}
+                          <div className="d-flex justify-content-between align-items-center mt-2">
                             <Button
                               variant="outline-danger"
                               size="sm"
-                              onClick={() => navigate(`/bikes/${bike._id}`)} // ✅ navigate to BikeDetails
+                              className="view-details-btn"
+                              onClick={() => navigate(`/bikes/${bike._id}`)}
                             >
                               View Details
                             </Button>
-                            <small style={{ color: "#999" }}>
-                              {bike.engine || ""}
-                            </small>
                           </div>
                         </Card.Body>
                       </Card>
@@ -302,9 +296,7 @@ export default function HomeComp() {
                   disabled={currentPage === 1}
                 />
                 <Pagination.Prev
-                  onClick={() =>
-                    setCurrentPage((p) => Math.max(1, p - 1))
-                  }
+                  onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                   disabled={currentPage === 1}
                 />
 

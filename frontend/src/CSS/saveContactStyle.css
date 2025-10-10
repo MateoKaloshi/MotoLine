@@ -1,0 +1,186 @@
+/* Page and background */
+.contact-form-page {
+  min-height: 100vh;
+  padding: 2rem 1rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("../Images/CreateBike/createbikebackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Card styling */
+.contact-form-card {
+  width: 100%;
+  max-width: 540px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.06);
+}
+
+.contact-form-card .card-body {
+  padding: 2rem;
+}
+
+/* Avatar at the top (uses background image) */
+.contact-form-card .avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background-image: url("../Images/Contact/warning-sign.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  display: inline-block;
+}
+
+/* Keep markup safe if an <img> gets rendered — hide it visually */
+.contact-form-card .avatar img {
+  display: none !important;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* Input group base */
+.contact-input-group {
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  /* ensure inner form-control uses borderless look */
+}
+.contact-input-group .form-control {
+  border: 0;
+}
+
+/* Input group icon container */
+.input-group-text {
+  background-color: #fff;
+  border-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+}
+
+/* hide any inline images inside the addon (we use bg images) */
+.input-group-text img {
+  display: none !important;
+  width: 0;
+  height: 0;
+}
+
+/* specific addon backgrounds (unique IDs to avoid collisions) */
+.input-group-text#contact-fname-addon {
+  background-image: url("../Images/Contact/user.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+  min-width: 44px;
+}
+
+.input-group-text#contact-lname-addon {
+  background-image: url("../Images/Contact/user.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+  min-width: 44px;
+}
+
+.input-group-text#contact-email-addon {
+  background-image: url("../Images/Contact/email.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+  min-width: 44px;
+}
+
+.input-group-text#contact-phone-addon {
+  background-image: url("../Images/Contact/call.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 18px 18px;
+  min-width: 44px;
+}
+
+/* Focus styling for input groups */
+.contact-input-group:focus-within {
+  border-color: #dc3545;
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.18);
+}
+
+/* Buttons */
+.contact-buttonStyle {
+  background-color: #b83f20;
+  border-color: #b83f20;
+  color: #fff;
+  border-radius: 0.5rem;
+  padding: 0.6rem 1rem;
+}
+
+.contact-buttonStyle:hover {
+  background-color: #f15252;
+  border-color: #f15252;
+}
+
+.contact-buttonStyle:focus:active {
+  background-color: #f15252;
+  border-color: #f15252;
+}
+
+/* Disabled button style */
+.btn:disabled,
+.btn.disabled,
+.btn[disabled] {
+  background-color: #b83f20 !important;
+  border-color: #b83f20 !important;
+  color: #fff !important;
+  opacity: 1 !important;
+  pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (min-width: 992px) {
+  .input-group-text#contact-fname-addon,
+  .input-group-text#contact-lname-addon,
+  .input-group-text#contact-email-addon,
+  .input-group-text#contact-phone-addon {
+    background-size: 20px 20px;
+    min-width: 48px;
+  }
+  .contact-form-card .avatar {
+    width: 56px;
+    height: 56px;
+    background-size: contain;
+  }
+}
+
+@media (max-width: 576px) {
+  .input-group-text#contact-fname-addon,
+  .input-group-text#contact-lname-addon,
+  .input-group-text#contact-email-addon,
+  .input-group-text#contact-phone-addon {
+    background-size: 16px 16px;
+    min-width: 40px;
+    padding: 0.375rem;
+  }
+  .contact-form-card .avatar {
+    width: 40px;
+    height: 40px;
+  }
+
+  .contact-form-card {
+    margin: 0 0.5rem;
+  }
+  .contact-form-card .card-body {
+    padding: 1.25rem;
+  }
+}
+
+/* accessibility: keep pseudo-element available if needed */
+.input-group-text[style]::before {
+  content: "";
+}

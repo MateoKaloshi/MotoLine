@@ -25,24 +25,24 @@
 
 .form-control:focus {
   box-shadow: 0 0 0 0.15rem rgba(13, 110, 253, 0.15);
+  cursor: default !important;
 }
 
 .bg-createbike-hero {
-  background-image:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url('../Images/Login/loginbackground.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("../Images/CreateBike/createbikebackground.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
 }
 
-.createbike-form-page { 
+.createbike-form-page {
   background: transparent;
 }
 
-.createbike-form-card { 
-  background: rgba(255,255,255,0.96);
+.createbike-form-card {
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .createbike-buttonStyle {
@@ -87,13 +87,13 @@
 
 .createbike-input-group {
   border: 1px solid #ced4da;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
 .createbike-input-group:focus-within {
   border-color: #dc3545;
-  box-shadow: 0 0 0 .15rem rgba(220,53,69,.18);
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.18);
 }
 
 input:-webkit-autofill,
@@ -107,7 +107,9 @@ select:-webkit-autofill {
   transition: background-color 5000s ease-in-out 0s !important;
 }
 
-:root { --theme-red: #B33020; }
+:root {
+  --theme-red: #b33020;
+}
 
 .btn:disabled,
 .btn.disabled,
@@ -130,7 +132,7 @@ select:focus-visible {
 
 .createbike-input-group:has(select:focus) {
   border-color: #dc3545;
-  box-shadow: 0 0 0 .15rem rgba(220,53,69,.18);
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.18);
 }
 
 .createbike-input-group select option,
@@ -160,11 +162,11 @@ select {
 }
 
 .createbike-input-group select {
-  background-image:
-    linear-gradient(45deg, transparent 50%, #6b6b6b 50%),
+  background-image: linear-gradient(45deg, transparent 50%, #6b6b6b 50%),
     linear-gradient(135deg, #6b6b6b 50%, transparent 50%);
   background-size: 6px 6px, 6px 6px;
-  background-position: calc(100% - 18px) calc(1em + 2px), calc(100% - 12px) calc(1em + 2px);
+  background-position: calc(100% - 18px) calc(1em + 2px),
+    calc(100% - 12px) calc(1em + 2px);
   background-repeat: no-repeat;
 }
 
@@ -173,12 +175,12 @@ select {
 }
 
 form select option {
-  background-color: white; 
-  color: black; 
+  background-color: white;
+  color: black;
 }
 
 .form select option:hover {
-  background-color: #e60000; 
+  background-color: #e60000;
   color: white;
 }
 
@@ -190,4 +192,7 @@ form select option {
   .createbike-form-card .card-body {
     padding: 1.25rem;
   }
+}
+.createbike-form-page * {
+  cursor: default;
 }

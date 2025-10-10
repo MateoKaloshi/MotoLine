@@ -39,7 +39,24 @@ const uploadImages = async (req, res) => {
     res.status(500).json({ message: "Server error", error });
   }
 };
+const deleteImages = async (req, res) => {
+  try {
+    const { imageUrl } = req.body;
+    const bike = await PostBike.findById(req.params.id);
+    if (!bike) return res.status(404).json({ message: "Bike not found" });
+
+    bike.images = bike.images.filter(
+      (img) => !img.includes(imageUrl.split("/").pop())
+    );
+    await bike.save();
+
+    res.status(200).json({ message: "Image removed" });
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error });
+  }
+};
 
 module.exports = {
   uploadImages,
+  deleteImages,
 };

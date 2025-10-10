@@ -7,7 +7,7 @@ const SignUpComp = () => {
     first_name: "",
     last_name: "",
     phone_number: "",
-    address: "",
+    adress: "",
     email: "",
     password: "",
   });
@@ -26,7 +26,6 @@ const SignUpComp = () => {
       console.log("Registration successful:", response.data);
     } catch (error) {
       console.error("Registration error:", error);
-
     }
   };
 
@@ -77,9 +76,9 @@ const SignUpComp = () => {
                 <Form.Label>Address</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter address"
-                  name="address"
-                  value={register.address}
+                  placeholder="Enter adress"
+                  name="adress"
+                  value={register.adress}
                   onChange={handleChange}
                 />
               </Form.Group>

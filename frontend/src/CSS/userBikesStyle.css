@@ -1,0 +1,35 @@
+.mybikes-container {
+  min-height: 100vh;
+  padding-top: 100px;
+  padding-bottom: 80px;
+  background-color: #f8f9fa;
+}
+
+.homecard {
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 18px rgba(17, 17, 17, 0.06);
+}
+
+.homecard:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(255, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 1rem 1rem 1.2rem 1rem;
+}
+
+button.btn-danger {
+  background-color: #d6333f !important;
+  border: none !important;
+}
+
+button.btn-danger:hover {
+  background-color: #b71c1c !important;
+}
+
+button.btn-outline-danger:hover {
+  background-color: #ffe6e6 !important;
+  color: #d6333f !important;
+}

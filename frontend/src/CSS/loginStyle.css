@@ -8,7 +8,6 @@
   width: 100%;
   max-width: 500px;
   border-radius: 12px;
-  
 }
 
 .login-form-card .card-body {
@@ -29,9 +28,8 @@
 }
 
 .bg-login-hero {
-  background-image:
-    linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)),
-    url('../Images/Login/loginbackground.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("../Images/Login/loginbackground.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -39,39 +37,39 @@
   min-height: 100vh;
 }
 
-.login-form-page { 
-    background: transparent; 
+.login-form-page {
+  background: transparent;
 }
 
-.login-form-card { 
-    background: rgba(255,255,255,0.96); 
+.login-form-card {
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .login-buttonStyle {
-    background-color: #b83f20;
-    border-color: #b83f20;
+  background-color: #b83f20;
+  border-color: #b83f20;
 }
 
 .login-buttonStyle:hover {
-    background-color: #f15252;
-    border-color: #f15252;
+  background-color: #f15252;
+  border-color: #f15252;
 }
 
-.login-buttonStyle:focus:active{
-    background-color: #f15252;
-    border-color: #f15252;
+.login-buttonStyle:focus:active {
+  background-color: #f15252;
+  border-color: #f15252;
 }
 
 .login-createStyle {
-    color: #b83f20;
-    font-weight: 500;
-    text-underline-offset: 3px;
-    text-decoration: none
+  color: #b83f20;
+  font-weight: 500;
+  text-underline-offset: 3px;
+  text-decoration: none;
 }
 
 .login-createStyle:hover {
-    color: #f15252;
-    text-decoration: underline;
+  color: #f15252;
+  text-decoration: underline;
 }
 
 .login-rememberStyle:focus {
@@ -80,9 +78,9 @@
 }
 
 .login-rememberStyle:checked {
-    background-color: #f15252;
-    border-color:  #f15252;
-    box-shadow: none;
+  background-color: #f15252;
+  border-color: #f15252;
+  box-shadow: none;
 }
 
 .login-input-group .form-control:focus,
@@ -100,13 +98,13 @@
 
 .login-input-group {
   border: 1px solid #ced4da;
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   overflow: hidden;
 }
 
 .login-input-group:focus-within {
   border-color: #dc3545;
-  box-shadow: 0 0 0 .15rem rgba(220,53,69,.18);
+  box-shadow: 0 0 0 0.15rem rgba(220, 53, 69, 0.18);
 }
 
 input:-webkit-autofill,
@@ -139,10 +137,12 @@ select:-moz-autofill {
 
 input:-webkit-autofill:focus {
   border-color: inherit !important;
-  box-shadow: 0 0 0 0.2rem rgba(0,0,0,0.05) !important;
+  box-shadow: 0 0 0 0.2rem rgba(0, 0, 0, 0.05) !important;
 }
 
-:root { --theme-red: #B33020; }
+:root {
+  --theme-red: #b33020;
+}
 
 .btn:disabled,
 .btn.disabled,

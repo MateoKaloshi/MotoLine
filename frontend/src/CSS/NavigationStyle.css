@@ -1,7 +1,7 @@
-.brandStyle{
-    width: 200px;
-    height: 40px;
-    padding: 0;
+.brandStyle {
+  width: 200px;
+  height: 40px;
+  padding: 0;
 }
 
 .brandImg {
@@ -11,38 +11,39 @@
 }
 
 .brand-dropdown .dropdown-menu {
-    max-height: 220px;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+  max-height: 220px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.loginStyle{
-    padding-right: 20px;
+.loginStyle {
+  padding-right: 20px;
 }
 
-.menuStyle{
-    margin-left: 20px;
+.menuStyle {
+  margin-left: 20px;
 }
 
-.hoverStyle:not(.no-scale):hover{
-    cursor: pointer;
-    transform: scale(1.07);
-    transition: transform 0.18s;
+.hoverStyle:not(.no-scale):hover {
+  cursor: pointer;
+  transform: scale(1.07);
+  transition: transform 0.18s;
 }
 
 .no-scale:hover {
   transform: none !important;
 }
 
-.searchWidth{
+.searchWidth {
   padding-right: 30px;
 }
 
 .custom-search .form-control {
-  border-radius: 20px 0 0 20px;
+  border-radius: 10px 0 0 0px;
   border: none;
   box-shadow: none;
 }
+
 .custom-search .input-group-text {
   border-radius: 0 20px 20px 0;
   border: none;
@@ -62,6 +63,7 @@
   will-change: transform;
 }
 
+/* ---------- Responsive Layout Adjustments ---------- */
 @media (max-width: 991px) {
   .brandStyle {
     width: 150px;
@@ -191,5 +193,134 @@
     float: none;
     width: 100%;
     box-shadow: none;
+  }
+}
+
+/* ---------- Branding ---------- */
+.brandStyle {
+  width: 200px;
+  height: 40px;
+}
+
+.brandImg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ---------- Search Box ---------- */
+.custom-search .form-control {
+  border-radius: 20px 0 0 20px;
+  border: none;
+}
+
+.custom-search .input-group-text {
+  border-radius: 0 20px 20px 0;
+  border: none;
+  background: white;
+}
+
+/* ---------- Live Search Dropdown ---------- */
+.live-search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  max-height: 250px;
+  overflow-y: auto;
+  z-index: 1000;
+  margin-top: 2px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.live-search-item {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.live-search-item:hover {
+  background: #f8f8f8;
+}
+
+@media (max-width: 991px) {
+  .navbar-collapse {
+    flex-direction: column !important;
+    align-items: stretch;
+  }
+  .navbar-collapse .nav,
+  .navbar-collapse .d-flex {
+    width: 100%;
+    flex-direction: column;
+  }
+  .searchWidth {
+    width: 100%;
+    margin: 10px 0;
+  }
+}
+
+/* ---------- Input Focus ---------- */
+.custom-search .form-control:focus {
+  outline: none;
+  box-shadow: none;
+  border-color: #ccc;
+}
+
+/* ---------- Refined search bar border (1px thin, softer look) ---------- */
+.custom-search {
+  border: 1px solid #444 !important; /* thinner & subtle */
+  border-radius: 20px !important;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  width: 100%;
+  max-width: none;
+  background: #fff;
+}
+
+.custom-search .form-control,
+.custom-search .input-group-text {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent;
+}
+
+.custom-search .form-control {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.custom-search .input-group-text {
+  background: transparent;
+  padding: 6px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-search .input-group-text img {
+  display: block !important;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.custom-search .input-group-text img.white-fallback {
+  filter: invert(1) contrast(150%);
+  -webkit-filter: invert(1) contrast(150%);
+}
+
+@media (max-width: 360px) {
+  .custom-search .input-group-text {
+    padding: 4px 6px;
+  }
+  .custom-search .input-group-text img {
+    width: 16px;
+    height: 16px;
   }
 }

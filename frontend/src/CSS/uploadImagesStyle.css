@@ -1,0 +1,171 @@
+.upload-images-card {
+  max-width: 920px;
+  margin: 0 auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(24, 39, 75, 0.08);
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+  height: 500px;
+  padding: 16px;
+}
+
+.upload-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: space-between;
+}
+
+.upload-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.dropzone {
+  border: 2px dashed rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  cursor: pointer;
+  transition: background-color 0.12s ease, border-color 0.12s ease;
+}
+.dropzone.dragging {
+  background: linear-gradient(
+    90deg,
+    rgba(99, 102, 241, 0.06),
+    rgba(99, 102, 241, 0.03)
+  );
+  border-color: rgba(99, 102, 241, 0.6);
+}
+
+.dropzone p {
+  margin: 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.thumb {
+  background: #ffffff;
+  width: 150px;
+  border-radius: 8px;
+  padding: 6px;
+  box-shadow: 0 2px 8px rgba(16, 24, 40, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.thumb .img-wrap {
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-radius: 6px;
+  position: relative;
+}
+
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.thumb .meta {
+  width: 100%;
+  font-size: 0.8rem;
+  color: #6b7280;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.thumb .remove-btn {
+  position: absolute;
+  right: 6px;
+  top: 6px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.upload-body {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+  flex-shrink: 0;
+}
+
+.left-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.small-muted {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+.progress-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+@media (max-width: 576px) {
+  .dropzone {
+    padding: 12px;
+  }
+  .upload-images-card {
+    padding: 12px;
+  }
+
+  .controls {
+    flex-direction: column-reverse;
+    gap: 8px;
+    align-items: stretch;
+  }
+  .left-controls {
+    justify-content: space-between;
+  }
+  .left-controls button {
+    flex: 1;
+  }
+  .controls > .btn-primary {
+    width: 100%;
+  }
+}

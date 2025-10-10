@@ -9,18 +9,26 @@ export function setAuthToken(token, { persist = true } = {}) {
     try {
       if (persist) {
         localStorage.setItem(TOKEN_KEY, token);
-        try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) {}
+        try {
+          sessionStorage.removeItem(TOKEN_KEY);
+        } catch (e) {}
       } else {
         sessionStorage.setItem(TOKEN_KEY, token);
-        try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
+        try {
+          localStorage.removeItem(TOKEN_KEY);
+        } catch (e) {}
       }
     } catch (e) {
       console.warn("Could not persist auth token:", e);
     }
   } else {
     delete axios.defaults.headers.common["Authorization"];
-    try { localStorage.removeItem(TOKEN_KEY); } catch (e) {}
-    try { sessionStorage.removeItem(TOKEN_KEY); } catch (e) {}
+    try {
+      localStorage.removeItem(TOKEN_KEY);
+    } catch (e) {}
+    try {
+      sessionStorage.removeItem(TOKEN_KEY);
+    } catch (e) {}
   }
 
   try {
